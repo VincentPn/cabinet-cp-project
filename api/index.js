@@ -1,10 +1,11 @@
-require('dotenv').config;
+require('dotenv').config();
 
+//Import du module Express
 const express = require('express');
+
+//Initialisation du serveur web Express
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`App listening on port : ${PORT}`);
+app.listen(() => {
+  console.log(`App listening on port : ${process.env.PORT}`);
 });
