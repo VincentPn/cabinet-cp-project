@@ -32,7 +32,7 @@ const authController = {
       delete request.body.passwordConfirm;
 
       const id = await new Utilisateur(request.body).create();
-      console.log("id: ", id);
+
       if(!id) throw new Error("user registration failed");
 
       response.status(201).send("registration success");
