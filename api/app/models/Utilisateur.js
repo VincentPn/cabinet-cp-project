@@ -6,7 +6,7 @@ class Utilisateur extends CoreModel {
 
   constructor(obj={}) {
     super(obj);
-    for(const propName in obj){
+    for(const propName in obj) {
       this[propName] = obj[propName];
     }
   }

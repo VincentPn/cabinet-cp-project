@@ -28,7 +28,7 @@ class CoreModel {
 
   static async findByUserId(id) {
     try {
-      const {rows} = await client.query(`SELECT * FROM "${this.tableName}" WHERE "user_id" = $1`, [id]);
+      const {rows} = await client.query(`SELECT * FROM "${this.tableName}" WHERE "utilisateur_id" = $1`, [id]);
       const instances = [];
       for(const instance of rows) {
         instances.push(new this(instance));
