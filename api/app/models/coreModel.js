@@ -67,14 +67,36 @@ class CoreModel {
     }
   }
 
-
   async update() {
     try {
-      await client.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
+      const properties = [];
+      const values = [];
+      const valuesCount = [];
+      let count = 0;
+
+      for(const prop in this) {
+        const property = prop;
+        if(prop === 'id') continue;
+        properties.push(`"${property}"`);
+        valuesCount.push(`$${++count}`);
+        values.push(this[property]);
+      }
+
+      const {rows} = await client.query(`UPDATE "${this.constructor.tableName}"(${properties}) VALUES(${valuesCount}) RETURNING id`, values);
+    
+      return rows[0];
     } catch (error) {
       if(error.detail) throw new Error(error.detail);
       else throw error;
     }
+
+
+    // try {
+    //   await client.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
+    // } catch (error) {
+    //   if(error.detail) throw new Error(error.detail);
+    //   else throw error;
+    // }
   }
 
   static async delete(id) {
