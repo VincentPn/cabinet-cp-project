@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS "user", "situation";
+DROP TABLE IF EXISTS "utilisateur", "situation";
 
 CREATE TABLE "utilisateur" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,22 +14,22 @@ CREATE TABLE "utilisateur" (
 
 CREATE TABLE "situation" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "chiffre_d_affaires" DECIMAL(10, 2),
-  "achats_sur_activité" DECIMAL(10, 2),
-  "autres_achats" DECIMAL(10, 2),
-  "impots" DECIMAL(10, 2),
-  "salaires" DECIMAL(10, 2),
-  "charges_sociales" DECIMAL(10, 2),
-  "amortissements" DECIMAL(10, 2),
-  "provisions" DECIMAL(10, 2),
-  "autres_charges" DECIMAL(10, 2),
-  "subventions" DECIMAL(10, 2),
-  "reprises_sur_amortissements" DECIMAL(10, 2),
-  "autres_produits" DECIMAL(10, 2),
-  "resultat_financier" DECIMAL(10, 2),
-  "resultat_exceptionnel" DECIMAL(10, 2),
-  "participation" DECIMAL(10, 2),
-  "impot_sur_societes" DECIMAL(10, 2),
+  "chiffre_d_affaires" MONEY DEFAULT 0,
+  "achats_sur_activité" MONEY DEFAULT 0,
+  "autres_achats" MONEY DEFAULT 0,
+  "impots" MONEY DEFAULT 0,
+  "salaires" MONEY DEFAULT 0,
+  "charges_sociales" MONEY DEFAULT 0,
+  "amortissements" MONEY DEFAULT 0,
+  "provisions" MONEY DEFAULT 0,
+  "autres_charges" MONEY DEFAULT 0,
+  "subventions" MONEY DEFAULT 0,
+  "reprises_sur_amortissements" MONEY DEFAULT 0,
+  "autres_produits" MONEY DEFAULT 0,
+  "resultat_financier" MONEY DEFAULT 0,
+  "resultat_exceptionnel" MONEY DEFAULT 0,
+  "participation" MONEY DEFAULT 0,
+  "impot_sur_societes" MONEY DEFAULT 0,
   "user_id" INTEGER NOT NULL REFERENCES "utilisateur" ("id") ON DELETE CASCADE
 );
 
