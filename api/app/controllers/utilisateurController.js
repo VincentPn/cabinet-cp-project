@@ -41,7 +41,9 @@ const utilisateurController = {
                 }
             };
 
-            const updatedUtilisateur = await Utilisateur.update();
+            const updatedUtilisateur = await utilisateur.update();
+
+            console.log(updatedUtilisateur);
             
             delete utilisateur.password;
             for(const key in user) !user[key] ? delete user[key] : null;

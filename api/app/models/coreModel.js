@@ -69,21 +69,35 @@ class CoreModel {
 
   async update() {
     try {
-      const properties = [];
-      const values = [];
-      const valuesCount = [];
-      let count = 0;
 
-      for(const prop in this) {
-        const property = prop;
-        if(prop === 'id') continue;
-        properties.push(`"${property}"`);
-        valuesCount.push(`$${++count}`);
-        values.push(this[property]);
-      }
+      // const records = [];
+      // for(let prop in this) {
+      //   const property = prop;
+      //   if(prop === 'id') continue;
+      //   records.push(`${property} = "${this[property]}"`);
+      // }
 
-      const {rows} = await client.query(`UPDATE "${this.constructor.tableName}"(${properties}) VALUES(${valuesCount}) RETURNING id`, values);
+      // console.log(records.join(', '));
+
+      // const properties = [];
+      // const values = [];
+      // const valuesCount = [];
+      // let count = 0;
+ 
+      // for(const prop in this) {
+      //   const property = prop;
+      //   if(prop === 'id') continue;
+      //   properties.push(`"${property}"`);
+      //   valuesCount.push(`$${++count}`);
+      //   values.push(this[property]);
+      // }
+
+      const {rows} = await client.query(`UPDATE ${this.constructor.tableName} SET nom = ${this.nom} WHERE id=${this.id}`);
+
+      // const {rows} = await client.query(`UPDATE "${this.constructor.tableName}" SET(${records.join(', ')}) WHERE "id"=${this.id}`);
     
+      console.log(rows);
+
       return rows[0];
     } catch (error) {
       if(error.detail) throw new Error(error.detail);
